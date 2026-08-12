@@ -1,20 +1,14 @@
 import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const pool = mysql.createPool({
-  host: 'mysql-32635b88-military-asset-db.g.aivencloud.com',
-  user: 'avnadmin',
-  password: 'AVNS_wARPkqdq9GvQTXOnHUw',
-  database: 'defaultdb',
-  port: 15682,
-  ssl: {
-    rejectUnauthorized: false
-  },
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+  host: process.env.DB_HOST || 'mysql-32635b88-military-asset-db.g.aivencloud.com',
+  user: process.env.DB_USER || 'avnadmin',
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME || 'defaultdb',
+  port: Number(process.env.DB_PORT) || 15682,
+  ssl: { rejectUnauthorized: false }
 });
 
-export default {
-  query: (sql, params) => pool.execute(sql, params),
-  getConnection: () => pool.getConnection()
-};
+export default pool;

@@ -11,11 +11,18 @@ import transferRoutes from './routes/transferRoutes.js';
 dotenv.config();
 
 const app = express();
+app.enable('trust proxy');
 
-app.use(helmet());
-app.use(cors());
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+}));
+
+app.use(cors({
+  origin: '*',
+  credentials: true
+}));
+
 app.use(express.json());
-
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/assets', assetRoutes);
 app.use('/api/v1/purchases', purchaseRoutes);

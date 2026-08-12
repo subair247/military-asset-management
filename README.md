@@ -69,7 +69,7 @@ npm (Node Package Manager)
 
 1.Clone the repository:
 ```
-git clone [https://github.com/YOUR_USERNAME/military-asset-management.git] 
+git clone [https://github.com/subair247/military-asset-management.git] 
 
 cd military-asset-management
 ```
